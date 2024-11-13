@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>admin page</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="heading">QUBIC SUPERMART</h1>
+    <p id="para">Hello! Welcome to SuperMart!</p>
+    
+      <table id="form">
+        <tr>
+          <td><label for="">Item Name </label> <span class="imp">*</span></td>
+          <td><input id="itemName"  type="text" required  /></td>
+        </tr>
+        <tr>
+          <td><label for="">Category </label><span class="imp">*</span></td>
+          <td><select id="category" required>
+              <option>Select here</option>
+              <option value="Vegetables">Vegetables</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Beverages">Beverages</option>
+              <option value="Fruits">Fruits</option>
+              <option value="sweets">sweets</option>
+            </select></td>
+        </tr>
+        <tr>
+          <td><label for="">Price </label><span class="imp">*</span></td>
+          <td><input id="price" type="number" required/></td>
+        </tr>
+        <tr>
+          <td><label for="">Quantity </label><span class="imp">*</span></td>
+          <td><input id="quantity" type="number" required/></td>
+        </tr>
+        <tr>
+            <td>  <label for="">Description </label></td>
+            <td> <textarea id="description" rows="1" cols="40" placeholder="write something about item" required></textarea></td>
+        </tr>
+        <tr>
+            <td> <label for="">ImageURL(optional) </label></td>
+            <td> <input id="imgurl" value="https://img.icons8.com/?size=100&id=13316&format=png&color=000000" type="text" placeholder="provide img url" /></td>
+        </tr>
+        <tr>
+          <td>
+            <button id="addItem">Add Item</button>
+        </td>
+        <td>
+          <button id="clearForm">Clear Form</button>
+        </td>
+        <td>
+                 
+            <button  id="clearItems">ClearItems</button>
+          
+        </td>
+        <td>
+          <button id="displayitems" ><a href="../dashboard/index.html">display</a></button>        
+        </td>
+       
+        </tr>
+      
+      </table>
+
+     
+     
+
+
+      <div id="message">
+
+      </div>
+   
+ 
+
+
+
+     <script src="javascript.js"></script>
+  </body>
+</html>
