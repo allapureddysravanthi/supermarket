@@ -1,0 +1,142 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body style="background-color: rgb(216, 216, 216); overflow: hidden;">
+  
+
+    <div class="heading">
+        <h1 style="position:relative; left:650px;  top:20px; font-size:50px">To-do List</h1>
+    </div>
+
+    <div>
+        <input type="text" name="" id="input" placeholder="Enter Something...............................................:-)" style="width:300px; height:50px; position:relative; left:600px;  top:30px; border-radius:10px;" >
+        <button id="btn" style="background-color:rgb(0, 125, 0); position:relative; left:630px;  top:30px; border-radius:10px;color:white;">save </button>
+        <!-- <input type="text" id="edit" style="width:300px; height:50px; position:relative; left:10px;  top:10px; border-radius:10px;"> -->
+    </div>
+
+    <div id="display" style=' width:400px; height:400px; position:relative; left:600px;  top:70px; border-radius:10px; background-color:white;overflow-y: scroll; scrollbar-width: none; '>
+
+    </div>
+    <button  id="clear" style="background-color:rgb(255, 0, 0); position:relative; left:600px;  top:80px; border-radius:10px;color:white;">clear</button>
+
+    <div id="update"></div>
+
+    <script>
+                    
+                    
+        const btn = document.getElementById('btn')
+        const input = document.getElementById('input')
+        const display = document.getElementById('display')
+        const clear=document.getElementById('clear')
+      
+       
+
+
+displayItems();
+
+btn.onclick = () => {
+    let text = input.value;
+
+    if (text) {
+        let array = JSON.parse(localStorage.getItem('array')) || [];
+        array.push(text);
+        localStorage.setItem('array', JSON.stringify(array));
+        displayItems();
+        input.value = '';
+    }
+    else{
+        alert("enter text in input field")
+    }
+};
+
+function displayItems() {
+    display.innerHTML = ''; 
+   
+    let stored = JSON.parse(localStorage.getItem('array'));
+    if (stored) {
+        for (let i = 0; i < stored.length; i++) {
+            let list = document.createElement('li');
+              list.style.cssText='background-color:gray;height:40px;padding:10px 0px 0px 20px;color:white;'
+            
+            
+            let remove=document.createElement('button') 
+            remove.innerHTML="remove"           
+            remove.style.cssText='height:20px; background-color:white;position:absolute; left:250px; width:60px;'
+        
+            remove.onclick=()=>{
+
+                   removeEle(i)
+
+            }
+
+            let edit=document.createElement('button')
+            edit.innerHTML="edit"
+            edit.style.cssText='height:20px; background-color:white;position:absolute; left:330px;width:60px;'
+  
+            edit.onclick =()=>{
+                update(i);
+                
+               
+                
+            }
+          
+            list.textContent = stored[i];
+            list.append(remove)
+            list.append(edit)
+            display.append(list);
+        
+        }
+    }
+}
+
+function removeEle(index)
+{
+   let ele=JSON.parse(localStorage.getItem('array')) || [];
+       ele.splice(index,1) 
+       localStorage.setItem('array',JSON.stringify(ele))
+       displayItems();
+   
+}
+
+  function update(index)
+{  
+    let div=document.getElementById('update');
+
+    let ele=JSON.parse(localStorage.getItem('array')) || [];
+    let input=document.createElement('input')
+    input.value=ele[index]
+    input.style.cssText=" position:absolute; left:1100px; bottom:300px; height:20px; width:200px; "
+    let up= document.createElement('button');
+    up.innerHTML="update"
+    up.style.cssText="background-color:yellow; position:absolute; left:1320px; bottom:300px; height:20px;  border-radius:10px"
+
+    up.onclick=()=>{
+      ele[index]=input.value;
+      localStorage.setItem('array',JSON.stringify(ele))
+      displayItems();
+
+       div.style.display="none"
+      
+    }
+    div.append(up)
+    div.append(input)
+    displayItems();
+
+
+}
+
+clear.onclick=()=>{
+          
+    localStorage.clear();
+    displayItems();
+}
+    </script>
+</body>
+</html>
+
